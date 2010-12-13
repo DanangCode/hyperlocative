@@ -4,6 +4,7 @@ body {
   font: 14px Helvetica, Arial, Sans-serif;
   background: #ddeef6;
   padding: 0.5%;
+  width: 480px;
 }
 
 #search {
@@ -15,6 +16,7 @@ body {
   -webkit-box-shadow: 2px 2px 5px rgba(88, 88, 88, 0.5);
   margin-bottom: 10px;
   padding: 10px;
+ 
 }
 
 #q {
@@ -48,6 +50,10 @@ body {
   font-size: 18px;
 }
 
+#cols {
+  width: 480px;
+}
+
 #map-wrapper, #results-wrapper {
   padding: 1%;
   background: #fff;
@@ -75,16 +81,16 @@ body {
  display: none;
 }
 
-#images { height: 500px;  padding:0; margin:0; overflow: hidden;}
+#images { height: 240px;  width: height: 240px; padding:0; margin:0; overflow: hidden;}
 #images img { border:none;}
 
 #map {
-  height: 500px;
+  height: 245px;
 }
 
 #results {
   padding: 2px;
-  max-height: 496px;
+  max-height: 296px;
   overflow: auto;
 }
 
