@@ -1,0 +1,18 @@
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js">
+  </script>
+  <script type="text/javascript" src="static/jquery.jplayer.min.js">
+  </script>
+  <script>
+   $(document).ready(function() {
+     $("#jpId").jPlayer( {
+       ready: function () {
+         this.element.jPlayer("setFile", "static/google.mp3"); // Defines the mp3
+       }
+     });
+   });
+  </script>
+</head>
+<body>
+  <div id="jpId"></div>
+</body>

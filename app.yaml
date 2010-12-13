@@ -1,0 +1,33 @@
+application: hyperlocative
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /geosearch/static
+  static_dir: geosearch/static
+
+- url: /geosearch/.*
+  static_files: geosearch/index.html
+  upload: geosearch/index.html
+
+
+
+- url: /photoset/static
+  static_dir: photoset/static
+
+- url: /photoset/.*
+  static_files: photoset/index.html
+  upload: photoset/index.html
+  
+- url: /audioboo/static
+  static_dir: audioboo/static
+
+- url: /audioboo/.*
+  static_files: audioboo/index.html
+  upload: audioboo/index.html
+
+- url: /.*
+  static_files: geosearch/index.html
+  upload: geosearch/index.html
+  
