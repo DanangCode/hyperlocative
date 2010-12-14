@@ -15,7 +15,7 @@ function init() {
   var mapDiv = document.getElementById('map');
   map = new google.maps.Map(mapDiv, {
     center: new google.maps.LatLng(37.776481,-122.437906),
-    zoom: 11,
+    zoom: 13,
     mapTypeId: google.maps.MapTypeId.HYBRID
   });
   addActions();
@@ -37,10 +37,12 @@ function addActions() {
 
   $('#close').click(function() {
     $('#cols').removeClass('has-cols');
+    $('#results-wrapper').hide();
+    $('#map-wrapper').show();
     var myCenter = map.center;
     google.maps.event.trigger(map, 'resize');
     map.panTo(myCenter);
-    $('#results-wrapper').hide();
+    
     return false;
   });
 }
@@ -91,6 +93,7 @@ onClusterClick = function(cluster) {
 	      this.mediaViewer = new GFslideShow(cluster[0].markers_, "images", options);
 	      
 	      
+	      $('#map-wrapper').hide();
 	      $('#results-wrapper').show();
         var cols = $('#cols');
         if (!cols.hasClass('has-cols')) {

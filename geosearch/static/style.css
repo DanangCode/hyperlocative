@@ -1,10 +1,10 @@
 body {
   margin: 0;
   padding: 0;
-  font: 14px Helvetica, Arial, Sans-serif;
+  font: 10px Helvetica, Arial, Sans-serif;
   background: #ddeef6;
   padding: 0.5%;
-  width: 480px;
+  width: 320px;
 }
 
 #search {
@@ -29,7 +29,7 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
   font-size: 18px;
-  width: 330px;
+  width: 320px;
 }
 
 #btn {
@@ -47,11 +47,11 @@ body {
 #search label {
   color: #fff;
   padding: 8px 10px;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 #cols {
-  width: 480px;
+  width: 320px;
 }
 
 #map-wrapper, #results-wrapper {
@@ -66,32 +66,26 @@ body {
 
 .has-cols #map-wrapper,
 .has-cols #results-wrapper {
-  width: 47.5%;
+  width: 100%;
 }
 
-.has-cols #map-wrapper {
-  float: left;
-}
 
-.has-cols #results-wrapper {
-  float: right;
-}
 
 #results-wrapper {
  display: none;
 }
 
-#images { height: 240px;  width: height: 240px; padding:0; margin:0; overflow: hidden;}
+#images { height: 300px;  width: 240px; padding:30px; margin:0px; }
 #images img { border:none;}
 
 #map {
-  height: 245px;
+  height: 320px;
 }
 
 #results {
   padding: 2px;
   max-height: 296px;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .tweet {
@@ -121,9 +115,9 @@ body {
 
 #close {
   float: right;
-  margin: -1.5% -1.5% 0 0;
+  margin: 0 0 0 0;
   font-weight: bold;
-  font-size: 150%;
+  font-size: 200%;
   text-decoration: none;
   color: #59b;
 }
