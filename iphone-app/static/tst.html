@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HTML GeoLocation Test</title>
+<script type="text/javascript">
+
+function findMyCurrentLocation(){
+ 	var geoService = navigator.geolocation;
+ 	if (geoService) {
+  		alert("Your Browser supports GeoLocation");
+  		navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy: true});
+  	} else {
+  		alert("Your Browser does not support GeoLocation.");
+  	}
+}
+
+function showCurrentLocation(position){
+ 	document.getElementById("mycurrentlocation").innerHTML = "Your location details --> Current Latitude : " + position.coords.latitude + " , Longitude : " + position.coords.longitude;
+}
+
+function errorHandler(error){
+ 	  alert("Error while retrieving current position. Error code: " + error.code + ",Message: " + error.message);
+}
+</script>
+</head>
+<body>
+<div id="main">
+	<div id="mycurrentlocation"></div>
+	<input type="button" value="Find My Location" onclick="findMyCurrentLocation()"/>
+</div>
+</body>
+</html>
