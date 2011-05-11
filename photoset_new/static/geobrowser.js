@@ -1,11 +1,10 @@
-
-  JW_FLICKR_URL = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=670949fd115db669125922fccd1e24e0&user_id=31355801%40N05&tags=project10&has_geo=1&auth_token=72157626343889352-ac7ac8d2aa037bc1&api_sig=5805dc4b101a7fa3c2ed8b643b3ae11d&sort=date-taken-asc";  
+  JW_API_KEY = "28dc29f7d5fcf4a473594f1595db8340";
+  JW_FLICKR_URL = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + JW_API_KEY + "&user_id=31355801%40N05&has_geo=1&extras=geo%2Cdate_taken&sort=date-taken-asc";  
        
   var jw_browser; //global!
 
-  function newGeoBrowser(myTag) {
+  function newGeoBrowser() {
     jw_browser = new GeoBrowser();
-    jw_browser.loadNewFeed('project10');
   }
   
   //constructor
@@ -20,9 +19,8 @@
   
   //factory method
   GeoBrowser.prototype.createMap = function(position) {
-  		center = new google.maps.LatLng(position.x, position.y - 200); 
   		var myOptions = {
-  		  zoom: 17,
+  		  zoom: 12,
   		  center: position = position,
   		  mapTypeId: google.maps.MapTypeId.HYBRID,
   		  streetViewControl: true,
@@ -32,26 +30,26 @@
   		  navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL, position: google.maps.ControlPosition.TOP_RIGHT},  
   		};
       newMap = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  //    this.addMarkers(newMap);
+      this.addMarkers(newMap);
       return newMap;
   }
   
   //factory Method
   GeoBrowser.prototype.createAvatar = function(map) {
     var jasperIcon = new google.maps.MarkerImage('static/jasper_200.png',
-        new google.maps.Size(84, 200),
+        new google.maps.Size(83, 200),
         new google.maps.Point(0,0),
-        new google.maps.Point(33, 98));
+        new google.maps.Point(67, 196));
 
      avatar = new google.maps.Marker({position: map.center, title:'Jasper', icon:jasperIcon, zIndex: 1});
      avatar.setMap(map);
      //This tells the avatar postion to Observe the GeoBrower Position (google KVO)
-     avatar.bindTo('position');
+     avatar.bindTo('position', this);
      return avatar;    
   }
   
   //TODO put data somewhere. fusion table? text file?
-/*  GeoBrowser.prototype.addMarkers = function(map) {
+  GeoBrowser.prototype.addMarkers = function(map) {
         var setMarker = new google.maps.Marker({position: new google.maps.LatLng(37.75962, -122.426836), title:'Dyke March', zIndex: 2, icon: 'http://www.google.com/mapfiles/markerA.png'});
         setMarker.setMap(map);
         google.maps.event.addListener(setMarker, 'click', this.bind(function() {this.loadNewFeed('project10');}));
@@ -60,7 +58,6 @@
         setMarker.setMap(map);
         google.maps.event.addListener(setMarker, 'click', this.bind(function() {this.loadNewFeed('project9');}));
   }
-*/
   
   //controller map click event| Controller asks google feeds to load an rss, and gives a callback Controller function
   GeoBrowser.prototype.loadNewFeed = function(tag) {
@@ -80,13 +77,12 @@
   	                    fullControlPanel : true, fullControlPanelSmallIcons : false,
                    //     imageClickCallback : this.bind(this.onImageClick), 
                         thumbnailUrlResolver: this.processFlickrUrl,
-                        pauseOnHover : false,
-                        centerBias : { topBias : 0, leftBias : 0}
+                        pauseOnHover : false
   	                    };
   	    
   	      this.mediaViewer = new GFslideShow(result.feed.entries, "slideShow", options);
   	  } else {
-          alert("failed httpcode=" + result.error.message);
+          alert("httpcode=" + result.error.code);
       }
   }
   
@@ -119,15 +115,13 @@
 	
 	GeoBrowser.prototype.updateTime = function(xmlNode) {
 	    var el = document.getElementById("info");
-      el.innerHTML = this.getTime(xmlNode).toLocaleDateString().toUpperCase() + " | " + this.getTime(xmlNode).toLocaleTimeString();
+      el.innerHTML = this.getTime(xmlNode).toLocaleDateString().toUpperCase() + " @" + this.getTime(xmlNode).toLocaleTimeString();
 	}
 	
 	GeoBrowser.prototype.updateGeography = function(xmlNode) {
 	  this.set ('position', this.getLatlng(xmlNode));
 	  this.trail.setPosition(this.position, this.map)
     this.map.panTo(this.position);
-    this.map.panBy(0, -60);
-  
   };
   
   //constructor
